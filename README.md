@@ -4,6 +4,8 @@
 
 OpenAudit AI combines **static analysis** with **LLM-powered explanations** to help developers find and understand security issues in their Solidity smart contracts.
 
+![OpenAudit AI Architecture](public/arch-openaudit.png)
+
 ---
 
 ## ✨ Features
